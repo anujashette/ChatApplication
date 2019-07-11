@@ -21,15 +21,16 @@ exports.registration = (req, res) => {
                 }
                 // Check if error occure in user input
                 if (error) {
-                        return res.status(400).send({
-                                message: error || "Some error occurred while creating the user."
-                        });
+                        return res.status(400).json({message: error || "Some error occurred while creating the user"})
+                        // send({
+                        //         message: error || "Some error occurred while creating the user."
+                        // });
                 }
                 else {
                         service.registration(req.body, (error, result) => {
                                 console.log("register", req.body)
                                 if (error) {
-                                        return res.status(500).send({
+                                        return res.status(422).json({
                                                 message: error || "Some error occurred while creating the user."
                                         });
                                 }

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const mongoose = require('mongoose');
 const dbConfig = require('./config/database.config.js');
+const cors=require('cors')
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -20,6 +21,7 @@ mongoose.connect(dbConfig.url, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
+app.use(cors())
 
 // Response to the browser
 app.get('/', (req, res) => {
@@ -30,5 +32,5 @@ require('./app/routes/user.routes.js')(app);
 // Port is listening 
 
 app.listen(5000, () => {
-    console.log("Server is listening on port 3000");
+    console.log("Server is listening on port 5000");
 })

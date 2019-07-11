@@ -21,6 +21,7 @@ exports.login = (req, res) => {
         if (error) {
             return res.status(500).send({
                 message: error || "Some error occurred in login process."
+            
             });
         }
         else {
@@ -28,12 +29,13 @@ exports.login = (req, res) => {
                 console.log('inside controller')
                 console.log("login", req.body)
                 if (error) {
-                    return res.status(500).send({
+                    console.log('errror',error)
+                    return res.status(500).json({
                         message: error || "Some error occurred while login."
                     });
                 }
                 else {
-                    return res.status(200).send(result);
+                    return res.status(200).json(result);
                 }
             })
         }

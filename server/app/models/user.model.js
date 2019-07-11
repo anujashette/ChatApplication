@@ -64,10 +64,10 @@ userModel.prototype.registration = (userdata, callback) => {
                             // console.log("save successfully data", user.id)
                             newToken.genToken(user, (error, emailtoken) => {
                                 // console.log('email token',emailtoken.token)
-                                const url = `http://localhost:3000/user/confirmed/${emailtoken.token}`
+                                const url = `http://localhost:5000/user/confirmed/${emailtoken.token}`
                                 sendmail.mailer(url, user.email);
                             })
-                            return callback(null, result)
+                            return callback(null, 'Your Account is created successfully.!!!')
                         }
                     })
                 });
@@ -104,12 +104,15 @@ userModel.prototype.login = (userdata, callback) => {
                                     return callback(error)
                                 }
                                 else {
-                                    return callback(null, { 'token': token, 'status': 'login successfully' })
+                                    return callback(null, { 'token': token,
+                                    'username': data.username,
+                                    'email' : data.email,
+                                    'status': 'login successfully'})
                                 }
                             })
                         }
                         else {
-                            return callback(null, 'Password is incorrect')
+                            return callback( 'Password is incorrect')
                         }
                     }).catch(err => {
                         console.log('Could not connect to the database. Exiting now...', err);
@@ -153,7 +156,7 @@ userModel.prototype.forgetPass = (userdata, callback) => {
                 newToken.genToken(data, (error, emailtoken) => {
                     console.log('email tokennnnnnnnnnnnnnnnn', emailtoken.token)
 
-                    const url = `http://localhost:3000/user/resetpass/${emailtoken.token}`
+                    const url = `http://localhost:3000/reset/${emailtoken.token}`
                     sendmail.mailer(url, data.email);
                 })
 
