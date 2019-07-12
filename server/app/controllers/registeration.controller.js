@@ -1,5 +1,5 @@
 const Validator = require("validator");
-const service = require("../services/services")
+const service = require("../services/UserServices")
 
 // Create and Save a new Note
 exports.registration = (req, res) => {

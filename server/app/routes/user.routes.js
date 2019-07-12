@@ -1,8 +1,8 @@
 module.exports = (app) => {
     const usercrtR = require('../controllers/registeration.controller.js');
     const usercrtL = require('../controllers/login.controller.js');
-    const usercrtV = require('../middleware/TokenVerify.js');
     const confirm = require('../controllers/confirm.controller');
+    const cahtCrt = require('../controllers/chat.controller')
 
     //    @route    post api/ auth
     //    @desc     register user
@@ -24,4 +24,9 @@ module.exports = (app) => {
     app.post('/user/forgetpass/', confirm.forgetPass)
     // Reset password
     app.post('/user/resetpass/', confirm.resetPass)
+
+    app.post('/chat/sender',cahtCrt.sender)
+
+    app.post('/chat/receiver',cahtCrt.receiver)
+
 }

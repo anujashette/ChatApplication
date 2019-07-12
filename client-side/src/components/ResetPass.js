@@ -58,23 +58,22 @@ export default withStyles(styles)(
             else {
                 let input = {
                     password: this.state.password,
+                    
                 }
-                console.log(input)
-                resetPass(input)
-                    .then(response => {
+                    resetPass(input,this.props.match.params.token)
+                    .then(response =>{
                         console.log('response', response)
-                        alert("Password is reset Successfully")
-                        this.props.props.history.push('/')
+                        alert("Password reset Successfully")
+                        this.props.history.push('/')
                     })
-                    .catch((response => {
-                        console.log("error", response.status)
-                        alert("Password is not reset please try again...!");
+                    .catch((errorMessages =>{
+                    alert("email or password incorrect OR Verfiy your email"); 
                     }))
             }
         }
 
         handleBar = () => {
-            this.props.props.history.push('/')
+            this.props.history.push('/')
         }
 
         render() {

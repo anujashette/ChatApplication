@@ -13,7 +13,7 @@ exports.genToken = (userdata, callback) => {
     payload,
     config.jwtsecret,
     {
-      expiresIn: 36000
+      expiresIn: 3600
     },
     (err, token) => {
       console.log(token)

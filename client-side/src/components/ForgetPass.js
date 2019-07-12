@@ -71,8 +71,7 @@ const styles = theme => ({
                    alert("Link is sent to your mail ID")
                    this.props.props.history.push('/')
                 })
-                .catch((response =>{
-                    console.log("error",response.status)
+                .catch((errorMessages =>{
                 alert("Account not exist with this id"); 
                 }))
             }

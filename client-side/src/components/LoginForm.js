@@ -64,7 +64,7 @@ class LoginForm extends React.Component {
         }
         else if(!this.state.password){
             alert('Password should not be empty')
-        }else if( this.state.formData.password.length<6){
+        }else if( this.state.password<6){
             alert('Password is too short. Atleast 6 charachters')
         }
         else{
@@ -83,8 +83,7 @@ class LoginForm extends React.Component {
 
                 this.props.props.history.push('/dashboard')
             })
-            .catch((response =>{
-                console.log("545454545",response.status)
+            .catch((errorMessages =>{
             alert("email or password is incorrect OR Verfiy your email"); 
             }))
         }

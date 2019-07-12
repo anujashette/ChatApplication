@@ -1,7 +1,7 @@
 // const config = require('../../config/database.config.js')
 // const jwt = require('jsonwebtoken')
 const usercrtV = require('../middleware/TokenVerify.js');
-const services = require('../services/services')
+const services = require('../services/UserServices')
 
 exports.confimed = (req, res) => {
     usercrtV.verifytoken(req.params.token, (error, decoded) => {
@@ -12,7 +12,8 @@ exports.confimed = (req, res) => {
             services.verify(decoded, (error, confirmation) => {
                 console.log(confirmation)
                 if (error) return res.status(401).send(error)
-                return res.status(200).send('Email verification is done.');
+                // return res.status(200).send('Email verification is done.');
+                return res.redirect('http://localhost:3000')
             })
         }
     })
@@ -28,6 +29,9 @@ exports.forgetPass = (req, res) => {
 
 exports.resetPass = (req, res) => {
     const userToken = req.headers['token'];
+    console.log(userToken)
+    console.log('token',req.body.password.password)
+
     usercrtV.verifytoken(userToken, (error, decoded) => {
         if (error) {
             res.status(401).send(error)
@@ -35,7 +39,7 @@ exports.resetPass = (req, res) => {
         else {
             console.log('controller  decoded', decoded)
 
-            services.resetPass(decoded, req.body.password, (error, confirmation) => {
+            services.resetPass(decoded, req.body.password.password, (error, confirmation) => {
                 console.log(confirmation)
                 if (error) return res.status(401).send(error)
                 return res.status(200).send('Reset Password succefully.');

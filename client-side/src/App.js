@@ -14,10 +14,10 @@ export class App extends Component {
       <div>
         <Route path="/" component={LoginForm} exact></Route>
         <Switch>
-          <Route path="/register" component={SignupForm}></Route>
+          <Route path="/register/" component={SignupForm}></Route>
           <Route path="/dashboard" component={Dashboard}></Route>
           <Route path="/forget" component={ForgetPage}></Route>
-          <Route path="/reset" component={ResetPass}></Route>
+          <Route path="/reset/:token" component={ResetPass}></Route>
         </Switch>
       </div>
     </BrowserRouter>

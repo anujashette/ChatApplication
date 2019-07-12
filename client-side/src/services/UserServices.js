@@ -7,6 +7,7 @@ export function register(input){
 }
 
 export function login(input){
+    
     console.log("user data",input)
     return axios.post( url+ `/user/login`,input )
 }
@@ -14,6 +15,14 @@ export function login(input){
 export function forgetPass(input){
     return axios.post(url +`/user/forgetpass/`,input)
 }
-export function resetPass(input){
-    return axios.post(url +`/user/resetpass/`,input)
+export function resetPass(input,token){
+    return axios.post(url +`/user/resetpass/`,{
+        password: input
+       },
+       {
+         headers: {
+           token: token
+         }
+       })
 }
+
