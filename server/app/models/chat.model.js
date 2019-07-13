@@ -3,7 +3,7 @@ var date =new Date()
 var time = date.getHours() +':'+ date.getMinutes();
 var day = date.getDay() +'/'+ date.getMonth()+'/'+date.getFullYear();
 
-const UserSchema = mongoose.Schema({
+const chatSchema = mongoose.Schema({
     sender: {
         type: String,
         require: true,
@@ -27,7 +27,7 @@ const UserSchema = mongoose.Schema({
 
 });
 
-var Chat = mongoose.model('Chat', UserSchema);
+var Chat = mongoose.model('chat', chatSchema);
 
 function chatModel(){
 

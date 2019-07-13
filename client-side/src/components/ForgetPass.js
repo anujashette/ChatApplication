@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Validator from 'validator'
-import {forgetPass} from '../services/services'
+import {forgetPass} from '../services/UserServices'
 
 // import TextField from '@material-ui/core/TextField'
 
@@ -68,7 +68,7 @@ const styles = theme => ({
                 forgetPass(input)
                 .then(response =>{
                     console.log('response',response)
-                   alert("Link is sent to your mail ID")
+                   alert(  response || "Link is sent to your mail ID" )
                    this.props.props.history.push('/')
                 })
                 .catch((errorMessages =>{
@@ -86,6 +86,7 @@ const styles = theme => ({
             const { classes } = this.props;
     
             return (
+                <center>
                 <ValidatorForm
                     ref="form"
                     onSubmit={this.handleSubmit}
@@ -120,12 +121,12 @@ const styles = theme => ({
                         type = "email"
                         margin="normal"
                     />
-                  
                     <br/>
                           <Button variant="contained" color="primary" onClick={this.handleForget} className={classes.button} >
                               Submit
                            </Button>
                       </ValidatorForm>
+                      </center>
                   );
               }
           }

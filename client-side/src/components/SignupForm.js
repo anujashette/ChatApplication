@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
-import {register} from '../services/services';
+import {register} from '../services/UserServices';
 import Validator from 'validator'
 
 const styles = theme => ({
@@ -97,6 +97,7 @@ export default withStyles(styles)(
             const { classes } = this.props;
 
             return (
+            <center>
                 <ValidatorForm
                     ref="form"
                     onSubmit={this.handleSubmit}>
@@ -160,6 +161,7 @@ export default withStyles(styles)(
                         }
                     </Button>
                 </ValidatorForm>
+                </center>
             );
         }
     })

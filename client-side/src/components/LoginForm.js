@@ -6,7 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Validator from 'validator'
-import {login} from '../services/services'
+import {login} from '../services/UserServices'
 
 // import TextField from '@material-ui/core/TextField'
 
@@ -51,7 +51,6 @@ class LoginForm extends React.Component {
     }
     handleSubmit = () => {
         // your submit logic
-        
     }
     handleLogin = event => {
         event.preventDefault();
@@ -100,6 +99,7 @@ class LoginForm extends React.Component {
         const { classes } = this.props;
 
         return (
+            <center>
             <ValidatorForm
                 ref="form"
                 onSubmit={this.handleSubmit}
@@ -153,7 +153,7 @@ class LoginForm extends React.Component {
                       <Button variant="contained" color="primary" onClick={this.handleForget} className={classes.button} type="button">
                           Forget Password
                        </Button>
-                  </ValidatorForm>
+                  </ValidatorForm></center>
               );
           }
       }

@@ -12,7 +12,7 @@ exports.verifytoken = (userToken, callback) => {
     }
     else {
         jwt.verify(userToken, config.jwtsecret, (err, decoded) => {
-            console.log(decoded.id)
+            // console.log(decoded.id)
             if (err) callback(err)
             callback(null, decoded)
         });

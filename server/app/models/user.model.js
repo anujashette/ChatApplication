@@ -26,7 +26,7 @@ const UserSchema = mongoose.Schema({
         timestamps: true
     },
 );
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model('user', UserSchema);
 function userModel() {
 }
 
@@ -152,6 +152,7 @@ userModel.prototype.forgetPass = (userdata, callback) => {
                 return callback('user not exist')
             }
             else {
+                if(data.confirmed){
                 console.log("save successfully dataaaaaaaaaaaa", data.id)
                 newToken.genToken(data, (error, emailtoken) => {
                     console.log('email tokennnnnnnnnnnnnnnnn', emailtoken.token)
@@ -160,8 +161,11 @@ userModel.prototype.forgetPass = (userdata, callback) => {
                     sendmail.mailer(url, data.email);
                 })
 
-                return callback(null, 'Link is sent to your mail Id')
+                return callback(null, 'Your account is not exist')
+            }else{
+                callback(null,'Your account is not exist')
             }
+        }
         }
     })
 }
@@ -173,7 +177,7 @@ userModel.prototype.resetPass = (decoded, changedPass, callback) => {
         bcrypt.hash(changedPass, salt, (err, hash) => {
             if (err) callback(err)
             changedPass = hash;
-            User.updateOne({ "_id": decoded.id }, { password: changedPass }, (error, data) => {
+            User.updateOne({ "_id": decoded.id }, { password:changedPass }, (error, data) => {
                 if (error) return callback(error)
                 if (!data) return callback('Registration is not done.Please do it again')
                 else return callback(null, data)

@@ -5,7 +5,7 @@ import { ValidatorForm, TextValidator, } from 'react-material-ui-form-validator'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { resetPass } from '../services/services'
+import { resetPass } from '../services/UserServices'
 
 
 const styles = theme => ({
@@ -81,6 +81,7 @@ export default withStyles(styles)(
             const { classes } = this.props;
 
             return (
+                <center>
                 <ValidatorForm
                     ref="form"
                     onSubmit={this.handleSubmit}
@@ -118,6 +119,7 @@ export default withStyles(styles)(
                         Submit
                            </Button>
                 </ValidatorForm>
+                </center>
             );
         }
     }
