@@ -28,24 +28,28 @@ mongoose.connect(dbConfig.url, {
 app.use(cors())
 
 // Response to the browser
-app.get('/', (req, res) => {
-    res.json({ "message": "Welcome to chat application." });
-})
-// app.get('/', function(req, res){
-//     res.sendFile(__dirname + '/index.html');
-//   });
+// app.get('/', (req, res) => {
+//     res.json({ "message": "Welcome to chat application." });
+// })
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+  });
 
-// io.on('connection', function(socket){
-//     connections.push(socket)
-//     console.log('a user connected',connections.length);
-//     socket.on('disconnect', function(){
-//         connections.splice(connections.indexOf(socket),1)
-//         console.log('a user connected',connections.length);
-//       });
-//   });
+io.on('connection', function(socket){
+    connections.push(socket)
+    console.log('a user connected',connections.length);
+    socket.on('disconnect', function(){
+        connections.splice(connections.indexOf(socket),1)
+        console.log('a user connected',connections.length);
+      });
+      socket.on('send message', function(msg){
+              io.emit('receive message', msg);
+            });
+  });
+
 
 require('./app/routes/user.routes.js')(app);
-// Port is listening 
+// Port is listening
 
 http.listen(5000, () => {
     console.log("Server is listening on port 5000");

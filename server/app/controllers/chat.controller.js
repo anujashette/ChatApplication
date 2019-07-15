@@ -16,8 +16,6 @@ exports.sender = (req, res) => {
     }
 }
 
-
-
 exports.receiver = (req, res) => {
 
     try {

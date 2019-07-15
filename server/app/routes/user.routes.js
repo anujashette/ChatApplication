@@ -27,6 +27,6 @@ module.exports = (app) => {
 
     app.post('/chat/sender',cahtCrt.sender)
 
-    app.post('/chat/receiver',cahtCrt.receiver)
+    app.get('/chat/receiver',cahtCrt.receiver)
 
 }
